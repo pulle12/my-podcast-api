@@ -1,9 +1,10 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body, Param } from '@nestjs/common';
 
 @Controller('episodes')
 export class EpisodesController {
     @Get()
-    findAll() {
+    findAll(@Query('sort') sort: 'asc' | 'desc' = 'asc') {
+        console.log(sort);
         return 'all episodes';
     }
 
@@ -12,8 +13,15 @@ export class EpisodesController {
         return 'featured episodes';
     }
 
+    @Get(':id')
+    findOne(@Param() id: string) {
+        console.log(id);
+        return 'one episode';
+    }
+
     @Post()
-    create() {
+    create(@Body() input: any) {
+        console.log(input);
         return 'new episode';
     }
 }
