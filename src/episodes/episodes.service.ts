@@ -27,4 +27,22 @@ export class EpisodesService {
         this.episodes.push(newEpisode);
         return newEpisode;
     }
+
+    async update(id: string, updateEpisodeDto: CreateEpisodeDto) {
+        const episode = await this.findOne(id);
+        if (!episode) {
+            throw new Error('Episode not found');
+        }
+        Object.assign(episode, updateEpisodeDto);
+        return episode;
+    }
+
+    async delete(id: string) {
+        const episode = await this.findOne(id);
+        if (!episode) {
+            throw new Error('Episode not found');
+        }
+        this.episodes = this.episodes.filter(ep => ep.id !== id);
+        return episode;
+    }
 }

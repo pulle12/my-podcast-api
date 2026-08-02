@@ -6,7 +6,7 @@ import { TopicsModule } from './topics/topics.module';
 import { ConfigModule } from './config/config.module';
 
 @Module({
-  imports: [EpisodesModule, TopicsModule, ConfigModule],
+  imports: [EpisodesModule, TopicsModule],
   controllers: [AppController],
   providers: [AppService],
 })
